@@ -1,7 +1,10 @@
+### Technical Assessment
 
+## Starting Docker Container
 
+docker run -p 8080:8080 restful_jukebox_app.jar
 
-## Original Problem description
+### Original Problem description
 
 Imagine you are building a web application to remote control Jukebox settings. Depending on what components (hardware modules) a jukebox has, it may or may not support a setting (a key-value pair). For example a jukebox with "LED panel" component supports `animation_type` setting or a jukebox which does not have a "money_receiver" component does not support `currency` setting. 
 
