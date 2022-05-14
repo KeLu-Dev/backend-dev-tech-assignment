@@ -9,6 +9,9 @@ import com.example.RestfulJukebox.dao.JukeboxDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.RestfulJukebox.dao.SettingDao;
+import com.example.RestfulJukebox.entity.Jukebox;
+import com.example.RestfulJukebox.entity.Setting;
+import java.util.List;
 
 /**
  *
@@ -21,7 +24,17 @@ public class JukeboxService {
     
     @Autowired 
     private SettingDao settingsDao;
-    
+
+    /**
+     *
+     * @return
+     */
+    public List<Jukebox> getJukeboxesByID() {
+    final List<Setting> settings = settingsDao.getAllSettings();
+        
+    return jukeboxdao.getAllJukeboxes();
+    }
+
     
     
 }

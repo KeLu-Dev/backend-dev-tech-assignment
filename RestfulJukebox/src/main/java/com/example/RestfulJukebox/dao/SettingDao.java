@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.RestfulJukebox.dao;
 import java.util.List;
 import com.example.RestfulJukebox.entity.Setting;
 /**
- *
+ * Interface for obtaining settings data 
  * @author GrQuil
  */
 public interface SettingDao {
+
+    /**
+     * Required method to get a list of all Settings
+     * @return
+     */
     List<Setting> getAllSettings();
 }
