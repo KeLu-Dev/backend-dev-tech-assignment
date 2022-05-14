@@ -2,7 +2,11 @@
 
 ## Starting Docker Container
 
-docker run -p 8080:8080 restful_jukebox_app.jar
+#Docker
+Maven build is included in the Dockerfile so run the following commands to build and run the container: 
+
+"docker build -t restful_jukebox_app.jar ."
+"docker run -p 8080:8080 restful_jukebox_app.jar"
 
 ### Original Problem description
 

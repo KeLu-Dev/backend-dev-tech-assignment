@@ -3,22 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.RestfulJukebox.entity;
-
-import java.util.List;
+package com.example.RestfulJukebox.service;
 
 /**
  *
  * @author GrQuil
  */
-
-public class Jukebox {
-
-    private String jukeboxId;
+public interface JukeboxServiceInterface {
     
-    private String model;
-    
-    private List<String> components; 
-
-
 }

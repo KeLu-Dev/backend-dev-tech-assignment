@@ -11,14 +11,9 @@ import java.util.List;
  *
  * @author GrQuil
  */
-
-public class Jukebox {
-
-    private String jukeboxId;
+public class Setting {
     
-    private String model;
+    private String settingId;
     
-    private List<String> components; 
-
-
+    private List<String> requiredComponents;
 }

@@ -3,22 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.RestfulJukebox.entity;
-
+package com.example.RestfulJukebox.dao;
 import java.util.List;
-
+import com.example.RestfulJukebox.entity.Setting;
 /**
  *
  * @author GrQuil
  */
-
-public class Jukebox {
-
-    private String jukeboxId;
-    
-    private String model;
-    
-    private List<String> components; 
-
-
+public interface SettingDao {
+    List<Setting> getAllSettings();
 }
