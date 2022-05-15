@@ -1,5 +1,4 @@
 package com.example.RestfulJukebox.controller;
-
 import com.example.RestfulJukebox.entity.Jukebox;
 import com.example.RestfulJukebox.entity.Setting;
 import com.example.RestfulJukebox.service.JukeboxService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -30,12 +30,18 @@ public class RestfulJukeboxController {
 	
     /**
      *
+     * @param settingId
+     * @param model
+     * @param offset
+     * @param limit
      * @return
+     * @throws java.lang.Exception
      */
     @GetMapping("/jukeboxes")
-    public List<Jukebox> return_String() {
+    public List<Jukebox> returnSettingJukeboxes(@RequestParam(required=true) String settingId, @RequestParam(required=false) String model, 
+                                                @RequestParam(required=false) Integer offset,@RequestParam(required=false) Integer limit ) throws Exception {
 
-        List<Jukebox> jukeboxesById= jukeboxService.getJukeboxesByID();
+        List<Jukebox> jukeboxesById= jukeboxService.getJukeboxesBySettingId(settingId, model, offset,limit);
         return jukeboxesById;
     }
 

@@ -8,6 +8,23 @@ Maven build is included in the Dockerfile so run the following commands to build
 "docker build -t restful_jukebox_app.jar ."
 "docker run -p 8080:8080 restful_jukebox_app.jar"
 
+## Implemented API
+
+
+#Example calls to run: 
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&model=angelina
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&limit=2
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2&limit=2
+
+http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=1&limit=5&model=angelina
+
 ### Original Problem description
 
 Imagine you are building a web application to remote control Jukebox settings. Depending on what components (hardware modules) a jukebox has, it may or may not support a setting (a key-value pair). For example a jukebox with "LED panel" component supports `animation_type` setting or a jukebox which does not have a "money_receiver" component does not support `currency` setting. 
