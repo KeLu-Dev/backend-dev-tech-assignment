@@ -1,5 +1,8 @@
 package com.example.RestfulJukebox.service;
 
+import com.example.RestfulJukebox.Error.FaultyPageParamException;
+import com.example.RestfulJukebox.Error.ModelDneException;
+import com.example.RestfulJukebox.Error.SettingDneException;
 import com.example.RestfulJukebox.dao.JukeboxDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +33,9 @@ public class JukeboxService {
      * @param offset : Can be Null: offset results by this amount  
      * @param limit : Can be Null: max page size of results 
      * @return
+     * @throws java.lang.Exception - Throw exception based on faulty settingId, model, offset or limit params
      */
-    public List<Jukebox> getJukeboxesBySettingId(String settingId, String model, Integer offset, Integer limit) {
+    public List<Jukebox> getJukeboxesBySettingId(String settingId, String model, Integer offset, Integer limit) throws Exception {
         
         List<Jukebox> jukeboxes = jukeboxdao.getAllJukeboxes();
         List<Setting> settings = settingDao.getAllSettings(); 
@@ -41,15 +45,15 @@ public class JukeboxService {
         //If model is not null then we filter the jukboxes to only be those of that model 
         if(model != null){
             jukeboxes = filterJukeboxesByModel(jukeboxes, model);
-            //Todo Throw exception model does not exist 
-            if(jukeboxes.size() == 0){
-                return matchingJukeboxes;
+            //If result set is empty then model does not exist and we throw a bad request response 
+            if(jukeboxes.isEmpty()){
+                throw new ModelDneException();
             }
         }
         
-        //Todo Throw Error exception setting does not exist 
+        //If setting for given settingID does not exist then we throw a bad request response 
         if(toFindSetting == null){
-            return matchingJukeboxes;
+            throw new SettingDneException();
         }
         
         if(toFindSetting.getRequires().size() != 0){
@@ -138,8 +142,9 @@ public class JukeboxService {
      * @param offset : offset of results set 
      * @param limit : max size of page to be returned 
      * @return : returns the tailored result set 
+     * @throws java.lang.Exception - If limit or offset is nonsensical 
      */
-    public List<Jukebox> paginateList(List<Jukebox> jukeboxes , Integer offset, Integer limit){
+    public List<Jukebox> paginateList(List<Jukebox> jukeboxes , Integer offset, Integer limit)throws Exception{
         Integer off = offset;
         Integer lim = limit;
         
@@ -152,9 +157,9 @@ public class JukeboxService {
             lim = jukeboxes.size();
         }
         
-        //ToDO Throws Exception bad argument 
-        if(off > jukeboxes.size() || lim < 0  ){
-                return null;
+        //If offset or limit is nonsenical then we return bad Request response 
+        if(off > jukeboxes.size() || lim <= 0 || off < 0 ){
+               throw new FaultyPageParamException();
         }
         
         //Ensure we don't have an outof bounds exception 

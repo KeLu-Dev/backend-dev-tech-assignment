@@ -1,29 +1,65 @@
 ### Technical Assessment
 
-## Starting Docker Container
+####Docker
 
-#Docker
-Maven build is included in the Dockerfile so run the following commands to build and run the container: 
+DockerFile is located inside src 
 
-"docker build -t restful_jukebox_app.jar ."
-"docker run -p 8080:8080 restful_jukebox_app.jar"
+Maven build is included in the Dockerfile so only the following commands are required:  
 
-## Implemented API
+'docker build -t restful_jukebox_app.jar .'
 
+'docker run -p 8080:8080 restful_jukebox_app.jar'
 
-#Example calls to run: 
+### Implemented API
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8
+Endpoints: 
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&model=angelina
+GET -> /jukeboxapi/jukeboxesBySetting -> for getting a list of jukeboxes that support a Setting
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&limit=2
+Parameters: 
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2
+`settingId` - String  - id of a Setting to search for    - (required)
+`model`     - String  - filter by model name             - (optional)
+`offset`    - Integer - specifies index of start of page - (optional)
+`limit`     - Integer - specifies the page size          - (optional)
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2&limit=2
+####Example calls to run via Postman: 
 
-http://localhost:8080/jukeboxapi/jukeboxes?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=1&limit=5&model=angelina
+Basic call with Valid settingID:
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8
+
+settingId and model: 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&model=angelina
+
+settingId, model and limit:
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&limit=2
+
+settingId, model and offset:
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2
+
+settingId, offset and limit:
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=2&limit=2
+
+settingID, offset, limit, and model:
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=1&limit=5&model=angelina
+
+####Example faulty calls to test via Postman: 
+
+Missing Required Param(settingId): 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?offset=1&limit=5&model=angelina
+
+no Setting matches given SettingId: 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=IdontExist!&offset=1&limit=5&model=angelina
+
+Model DNE: 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=358a044e-decc-47cc-aaf1-e2253a00998e&model=fakename
+
+Faulty Offset or limit value: 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=1&limit=-1&model=angelina
+
+Faulty type for Offset or limit: 
+http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=a&limit=1&model=angelina
+
 
 ### Original Problem description
 
@@ -87,5 +123,3 @@ Returns a list of all the available jukebox settings. Each setting contains a li
 ```
 
 **Note** that setting is considered to be supported if jukebox has _all_ required components.
-
-
