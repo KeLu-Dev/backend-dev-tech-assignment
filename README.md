@@ -50,7 +50,7 @@ http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60
 Missing Required Param(settingId): 
 http://localhost:8080/jukeboxapi/jukeboxesBySetting?offset=1&limit=5&model=angelina
 
-no Setting matches given SettingId: 
+No Setting matches given SettingId: 
 http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=IdontExist!&offset=1&limit=5&model=angelina
 
 Model DNE: 
