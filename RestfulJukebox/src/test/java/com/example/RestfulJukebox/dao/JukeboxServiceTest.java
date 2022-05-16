@@ -8,8 +8,10 @@ import com.example.RestfulJukebox.service.JukeboxService;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.util.Assert;
 
 
@@ -18,6 +20,7 @@ import org.springframework.util.Assert;
  * @author GrQuil
  */
 @SpringBootTest
+@ContextConfiguration
 public class JukeboxServiceTest {
     
     @Autowired
@@ -36,6 +39,7 @@ public class JukeboxServiceTest {
     public static void tearDownClass() {
     }
     
+   @Test
    public void testJukeboxServiceLayer() throws Exception{
        
        String settingId = "207797de-5857-4c60-a69b-80eea28bcce8";
@@ -44,7 +48,6 @@ public class JukeboxServiceTest {
        //Test normal operation 
        List<Jukebox> jukeboxes =  instance.getJukeboxesBySettingId(settingId, null, null, null);
        Assert.isTrue(jukeboxes.size() == 7, "Expecting 7 Jukeboxes");
-       
        //Testing offset
        jukeboxes =  instance.getJukeboxesBySettingId(settingId, null, 1, null);
        Assert.isTrue(jukeboxes.size() == 6, "Expecting 6 Jukeboxes");
@@ -63,7 +66,7 @@ public class JukeboxServiceTest {
        
        //Testing Universal Setting
        settingId = "aae445bf-72f0-4680-a23e-18fcf7241f8b";
-       jukeboxes =  instance.getJukeboxesBySettingId(settingId, model, 1, 2);
+       jukeboxes =  instance.getJukeboxesBySettingId(settingId, null, null, null);
        Assert.isTrue(jukeboxes.size() == 30, "Expecting 30 Jukeboxes");
        
        
