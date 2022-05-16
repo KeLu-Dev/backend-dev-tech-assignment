@@ -1,9 +1,8 @@
 ### Technical Assessment
 
-####Docker
+### Docker
 
-DockerFile is located inside src 
-
+DockerFile is located inside src. 
 Maven build is included in the Dockerfile so only the following commands are required:  
 
 'docker build -t restful_jukebox_app.jar .'
@@ -19,11 +18,14 @@ GET -> /jukeboxapi/jukeboxesBySetting -> for getting a list of jukeboxes that su
 Parameters: 
 
 `settingId` - String  - id of a Setting to search for    - (required)
+
 `model`     - String  - filter by model name             - (optional)
+
 `offset`    - Integer - specifies index of start of page - (optional)
+
 `limit`     - Integer - specifies the page size          - (optional)
 
-####Example calls to run via Postman: 
+###Example calls to run via Postman: 
 
 Basic call with Valid settingID:
 http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8
@@ -43,7 +45,7 @@ http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60
 settingID, offset, limit, and model:
 http://localhost:8080/jukeboxapi/jukeboxesBySetting?settingId=207797de-5857-4c60-a69b-80eea28bcce8&offset=1&limit=5&model=angelina
 
-####Example faulty calls to test via Postman: 
+###Example faulty calls to test via Postman: 
 
 Missing Required Param(settingId): 
 http://localhost:8080/jukeboxapi/jukeboxesBySetting?offset=1&limit=5&model=angelina

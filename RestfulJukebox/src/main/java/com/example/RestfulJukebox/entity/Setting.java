@@ -13,34 +13,22 @@ public class Setting {
     private String id;
     private List<String> requires;
     
-    /**
-     * Auto Generated getter method
-     * @return
-     */
+
     public String getId() {
         return id;
     }
 
-    /**
-     * Auto Generated setter method
-     * @param id
-     */
+
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * Auto Generated getter method
-     * @return
-     */
+
     public List<String> getRequires() {
         return requires;
     }
 
-    /**
-     * Auto Generated setter method
-     * @param requires
-     */
+
     public void setRequires(List<String> requires) {
         this.requires = requires;
     }

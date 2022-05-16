@@ -11,18 +11,12 @@ public class settingJsonResponce {
 
     private List<Setting> settings;
 
-    /**
-     * Auto Generated getter method
-     * @return
-     */
+
     public List<Setting> getSettings() {
         return settings;
     }
 
-    /**
-     * Auto Generated setter method
-     * @param settings
-     */
+
     public void setSettings(List<Setting> settings) {
         this.settings = settings;
     }

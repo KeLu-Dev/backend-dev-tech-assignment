@@ -9,7 +9,7 @@ public interface SettingDao {
 
     /**
      * Required method to get a list of all Settings
-     * @return
+     * @return : returns a list of Setting objects 
      */
     List<Setting> getAllSettings();
 }

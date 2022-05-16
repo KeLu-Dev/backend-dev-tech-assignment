@@ -11,7 +11,7 @@ public interface JukeboxDao {
 
     /**
      * Required method to get a list of all Jukeboxes 
-     * @return
+     * @return : returns a list of Jukebox objects 
      */
     List<Jukebox> getAllJukeboxes();
 }
